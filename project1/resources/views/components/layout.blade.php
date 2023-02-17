@@ -31,13 +31,9 @@
           <li class="my-px">
 
 
-            <!-- Form -->
-          <form method='post' action='/uploadFile' enctype='multipart/form-data' >
-            {{ csrf_field() }}
-            <input type='file' name='file' >
-            <input  type='submit' name='submit' value='Import'style="color:Tomato"; class=" items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700">
-          </form>
+           
 
+            <!-- Form for phd candidates  -->
             <a
               href="{{route('applicants')}}"
               class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700"

@@ -1,17 +1,38 @@
-<x-layout>
-  <form action="/applicants" method="get">
-    <label for="Faculty">Filter by Faculty:</label>
-    <select name="Faculty" id="Faculty">
-        <option value="">All</option>
-        <option value="Faculty of Contemporary Social Sciences">Faculty of Contemporary Social Sciences</option>
-        <option value="Faculty of Contemporary Sciences and Technologies">Faculty of Contemporary Sciences and Technologies</option>
-        <option value="Faculty of Languages, Cultures and Communication">Faculty of Languages, Cultures and Communication</option>
-        <option value="Faculty of Law">Faculty of Law</option>
-        <option value="Faculty of Business and Economics">Faculty of Business and Economics</option>
-    </select>
-    <button type="submit">Filter</button>
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+</head>
 
-    
+<x-layout>
+
+   <!-- Form  for insertion of file-->
+   <form method='post' action='/uploadFile' enctype='multipart/form-data' >
+    <!--   token field for security -->
+    {{ csrf_field() }}
+    <input type='file' name='file' >
+    <input  type='submit' name='submit' value='Import'style="color:Tomato"; class=" items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700">
+  </form>
+
+  
+
+<form action="/applicants" method="get">
+  <label for="Faculty">Filter by Faculty:</label>
+  <select name="Faculty" id="Faculty">
+    <option value="">All</option>
+    <option value="Faculty of Contemporary Social Sciences">Faculty of Contemporary Social Sciences</option>
+    <option value="Faculty of Contemporary Sciences and Technologies">Faculty of Contemporary Sciences and Technologies</option>
+    <option value="Faculty of Languages, Cultures and Communication">Faculty of Languages, Cultures and Communication</option>
+    <option value="Faculty of Law">Faculty of Law</option>
+    <option value="Faculty of Business and Economics">Faculty of Business and Economics</option>
+  </select>
+
+  <script>
+    document.getElementById("Faculty").addEventListener("change", function() {
+      this.form.submit();
+    });
+  </script>
+
+  
 </form>
     <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -175,6 +196,7 @@
                 </thead class="border-b">
                 <tbody>
                   
+                  <!-- Get applicants from controller-->
                 @foreach($applicants as $applicant)
                   <tr class="bg-white border-b">
                     
@@ -320,8 +342,11 @@
                     </td>
                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                         {{$applicant['DATE/MONTH/YEAR']}}
+                        
                     </td>
                     {{-- send data to button --}}
+
+                    
                     <td>
                       
                         {{ Form::open(['url' => '/form-url']) }}
@@ -333,8 +358,11 @@
                         {{ Form::hidden('UGS_GPA', $applicant->UGS_GPA) }}                   
                         {{ Form::hidden('MAS_GPA', $applicant->MAS_GPA) }}                  
                         {{ Form::hidden('MA_Institution_Name', $applicant->MA_Institution_Name) }}
-                        {{ Form::submit('Edit', ['class' => 'btn btn-primary']) }}
+                        <button type="submit" class="btn btn-primary">
+                          <i class="material-icons">edit</i>
+                      </button>
                       {{ Form::close() }}
+
                       
                     </td>
                   </tr>
@@ -346,4 +374,5 @@
         </div>
       </div>
 
+    
 </x-layout>

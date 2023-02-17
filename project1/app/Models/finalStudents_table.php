@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class finalStudents_table extends Model
+
+
 {
+    protected $primaryKey = 'AppId';
+    public $timestamps = false;
+
     protected $fillable = ["AppId",
     "Name",
     "surname",
@@ -27,7 +32,7 @@ class finalStudents_table extends Model
     "Gjithsejt",
     "UGS_Institution_Name",
     "MA_Institution_Name",
-    "Faculty"];
+    "Faculty","Status"];
     public $table = 'finalStudents';
    
 }

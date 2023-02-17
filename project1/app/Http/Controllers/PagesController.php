@@ -19,6 +19,7 @@ class PagesController extends Controller{
  //kode for å sende in csv!!
   public function uploadFile(Request $request){
 
+    //When pressing submit
     if ($request->input('submit') != null ){
 
       $file = $request->file('file');
@@ -57,6 +58,7 @@ class PagesController extends Controller{
           $importData_arr = array();
           $i = 0;
 
+          //fgetcsv() function to read each line of the file and convert it into an array of values using a comma as the delimiter.
           while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) {
              $num = count($filedata );
              
